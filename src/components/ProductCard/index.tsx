@@ -46,7 +46,7 @@ const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
         <PriceText>${formatPrice(product.price)}</PriceText>
         <LinkButton
           className="stretched-link"
-          to={`${strToSlug(product.category)}/${strToSlug(product.title)}/${
+          to={`/${strToSlug(product.category)}/${strToSlug(product.title)}/${
             product.id
           }`}
         >

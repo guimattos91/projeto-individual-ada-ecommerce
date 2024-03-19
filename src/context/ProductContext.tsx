@@ -22,6 +22,7 @@ interface IContextProps {
   error: string | null
   fetchProduct: (id: number) => void
   fetchProducts: () => void
+  fetchCategories: () => void
   fetchProductCategories: (category: string) => void
   setProductCategories: Dispatch<SetStateAction<ProductType[]>>
 }
@@ -50,7 +51,7 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
       const { data } = await Api.get('/')
       setProducts(data)
     } catch {
-      setError('Erro: Produtos não encontrados')
+      setError('Error: Product Not Found')
     } finally {
       setIsLoading(false)
     }
@@ -64,7 +65,7 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
       const { data } = await Api.get(`${id}`)
       setProduct(data)
     } catch {
-      setError('Erro: Produto não encontrado')
+      setError('Error: Product Not Found')
     } finally {
       setIsLoading(false)
     }
@@ -75,10 +76,10 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
     setError(null)
 
     try {
-      const { data } = await Api.get(`categories/`)
+      const { data } = await Api.get(`categories`)
       setCategories(data)
     } catch {
-      setError('Erro: Categoria Não encontrada')
+      setError('Error: Category Not Found')
     } finally {
       setIsLoading(false)
     }
@@ -91,7 +92,7 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
       const { data } = await Api.get(`/category/${category}`)
       setProductCategories(data)
     } catch {
-      setError('Erro: Categoria Não encontrada')
+      setError('Error: Category Not Found')
     } finally {
       setIsLoading(false)
     }
@@ -99,7 +100,6 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
 
   useEffect(() => {
     fetchCategories()
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -117,6 +117,7 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           fetchProducts,
           fetchProductCategories,
           setProductCategories,
+          fetchCategories,
         }),
         [
           product,
@@ -129,6 +130,7 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           fetchProducts,
           fetchProductCategories,
           setProductCategories,
+          fetchCategories,
         ],
       )}
     >

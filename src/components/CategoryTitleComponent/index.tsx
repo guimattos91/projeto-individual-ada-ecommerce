@@ -1,14 +1,17 @@
-import { Spinner } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
-import { LoadingContainer } from './style'
+import { Line } from 'styles/componentsStyle'
 
-const LoadingComponent: React.FC = () => {
+import { Title } from './style'
+
+interface ITitleComponent {
+  title: string
+}
+const CategoryTitleComponent: React.FC<ITitleComponent> = ({ title }) => {
   return (
-    <LoadingContainer>
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-    </LoadingContainer>
+    <Container className="d-flex align-items-center">
+      <Title>{title}</Title> <Line />
+    </Container>
   )
 }
-export { LoadingComponent }
+export { CategoryTitleComponent }

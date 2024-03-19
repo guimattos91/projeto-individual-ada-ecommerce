@@ -2,6 +2,7 @@ import { memo } from 'react'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import CategoryAllProducts from 'pages/AllProducts'
 import Category from 'pages/Category'
 import Home from 'pages/Home'
 import NotFound from 'pages/NotFound'
@@ -13,6 +14,7 @@ const Router: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:category" element={<Category />} />
+        <Route path="/all-products" element={<CategoryAllProducts />} />
         <Route path="/:category/:product/:id" element={<Product />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

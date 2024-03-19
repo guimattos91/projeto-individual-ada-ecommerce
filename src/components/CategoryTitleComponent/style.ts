@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 
-export const LoadingContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  text-align: center;
+export const Title = styled.h2`
   color: var(--color-primary);
-  margin: 2rem 0;
+  margin: 2rem;
+  white-space: nowrap;
 `

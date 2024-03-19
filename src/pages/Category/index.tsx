@@ -1,42 +1,54 @@
 import { memo, useEffect } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { useProducts } from 'context/ProductContext'
 
+import { CategoryTitleComponent } from 'components/CategoryTitleComponent'
 import Header from 'components/Header'
 import { LoadingComponent } from 'components/LoadingComponent'
 import { ProductList } from 'components/ProductList'
+
+import { capitalizeFirstLetters } from 'helpers'
 
 import useTitle from 'hooks/useTitle'
 
 const Category: React.FC = () => {
   const setTitle = useTitle()
 
-  useEffect(() => {
-    setTitle('home.head-title')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const {
     productCategories,
     isLoading,
     fetchProductCategories,
-    setProductCategories,
+    products,
+    fetchProducts,
   } = useProducts()
-  const { category } = useParams()
-  useEffect(() => {
-    if (category) {
-      fetchProductCategories(category)
-    }
-  }, [category, fetchProductCategories])
+  const location = useLocation()
+  const { state } = location
+  const originalCategory = state?.original || 'All Products'
 
-  console.log(category, productCategories)
+  useEffect(() => {
+    if (originalCategory) {
+      fetchProductCategories(originalCategory)
+    } else {
+      fetchProducts()
+    }
+  }, [fetchProductCategories, originalCategory, fetchProducts])
+  useEffect(() => {
+    setTitle(String(capitalizeFirstLetters(originalCategory)))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <>
       <Header />
+      <CategoryTitleComponent
+        title={capitalizeFirstLetters(originalCategory)}
+      />
       {isLoading && <LoadingComponent />}
-      <ProductList products={productCategories} isLoading={isLoading} />
+      {productCategories && (
+        <ProductList products={productCategories} isLoading={isLoading} />
+      )}
+      {products && <ProductList products={products} isLoading={isLoading} />}
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { Ratio, Row, Col, Container } from 'react-bootstrap'
 import { FaStar } from 'react-icons/fa'
 
-import { formatPrice, strToSlug } from 'helpers'
+import { capitalizeFirstLetters, formatPrice, strToSlug } from 'helpers'
 
 import { Line, LinkUnstylled } from 'styles/componentsStyle'
 
@@ -38,7 +38,7 @@ const ProductDetails: React.FC<IProductTypeProps> = ({ product }) => {
             <p>
               <LinkUnstylled to="/"> home&nbsp;</LinkUnstylled>
               <LinkUnstylled to={`/${strToSlug(product.category)}`}>
-                &nbsp;/&nbsp;{product.category}
+                &nbsp;/&nbsp;{capitalizeFirstLetters(product.category)}
               </LinkUnstylled>
               &nbsp;/&nbsp;{product.title}
             </p>

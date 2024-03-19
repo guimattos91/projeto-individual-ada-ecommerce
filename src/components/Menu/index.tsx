@@ -1,10 +1,12 @@
 import { Dispatch, SetStateAction } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { useProducts } from 'context/ProductContext'
 
 import { Logo } from 'components/Logo'
 
-import { strToSlug } from 'helpers'
+import { capitalizeFirstLetters, strToSlug } from 'helpers'
 
 import { ButtonUninstyled, LinkUnstylled } from 'styles/componentsStyle'
 
@@ -22,16 +24,24 @@ interface IMenuProps {
 
 const Menu: React.FC<IMenuProps> = ({ activateMenu, setActivateMenu }) => {
   const { categories } = useProducts()
-
+  const navigate = useNavigate()
+  const handleNavigate = (category: string): void => {
+    navigate(`/${strToSlug(category)}`, {
+      state: { original: `${category}` },
+    })
+  }
   return (
     <MenuBackground>
       <MenuContainer>
-        <LinkUnstylled to="/">All Products</LinkUnstylled>
+        <LinkUnstylled to="/all-products">All Products</LinkUnstylled>
         {categories &&
           categories.map((category) => (
-            <LinkUnstylled to={`/${strToSlug(category)}`}>
-              {category}
-            </LinkUnstylled>
+            <ButtonUninstyled
+              key={category}
+              onClick={() => handleNavigate(category)}
+            >
+              {capitalizeFirstLetters(category)}
+            </ButtonUninstyled>
           ))}
       </MenuContainer>
       {activateMenu && (
@@ -49,9 +59,12 @@ const Menu: React.FC<IMenuProps> = ({ activateMenu, setActivateMenu }) => {
             <LinkUnstylled to="/">All Products</LinkUnstylled>
             {categories &&
               categories.map((category) => (
-                <LinkUnstylled to={`/${strToSlug(category)}`}>
-                  {category}
-                </LinkUnstylled>
+                <ButtonUninstyled
+                  key={category}
+                  onClick={() => handleNavigate(category)}
+                >
+                  {capitalizeFirstLetters(category)}
+                </ButtonUninstyled>
               ))}
           </MenuMobileNav>
         </MenuMobile>

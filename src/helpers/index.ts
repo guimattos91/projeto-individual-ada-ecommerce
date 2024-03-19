@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import slugify from 'slugify'
 
 export const formatPrice = (price: number): string => {
@@ -25,3 +26,15 @@ export const strToSlug = (str: string): string =>
     lower: true,
     trim: true,
   })
+export const capitalizeFirstLetters = (sentence: string): string => {
+  const words = sentence.split(' ')
+
+  const capitalizedWords = words.map((word) => {
+    if (word === '') {
+      return ''
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1)
+  })
+
+  return capitalizedWords.join(' ')
+}

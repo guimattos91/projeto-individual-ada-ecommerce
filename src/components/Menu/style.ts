@@ -15,7 +15,7 @@ export const MenuContainer = styled(Container)`
   background-color: var(--color-primary);
   color: var(--color-white);
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: none;
   }
 `
@@ -26,12 +26,10 @@ export const MenuMobile = styled.div`
   left: 0;
   height: 100vh;
   width: 80%;
-  justify-content: center;
   z-index: 1;
   background-color: var(--color-primary);
   color: var(--color-white);
   padding: 2rem 0 0 0;
-  transition: left 5s ease-in-out;
 
   @media (max-width: 768px) {
     display: block;
@@ -41,7 +39,6 @@ export const MenuMobile = styled.div`
 export const MenuMobileNav = styled.nav`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin-left: 2rem;
   margin-top: 3rem;
   font-size: 1.5rem;
