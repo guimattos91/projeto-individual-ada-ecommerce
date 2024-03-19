@@ -1,6 +1,6 @@
 import { memo, useEffect } from 'react'
 
-import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import { useProducts } from 'context/ProductContext'
 
@@ -10,47 +10,40 @@ import Header from 'components/Header'
 import { LoadingComponent } from 'components/LoadingComponent'
 import { ProductList } from 'components/ProductList'
 
-import { capitalizeFirstLetters } from 'helpers'
+import { capitalizeFirstLetters, strToSlug } from 'helpers'
 
 import useTitle from 'hooks/useTitle'
 
 const Category: React.FC = () => {
   const setTitle = useTitle()
+  const { category } = useParams()
+  const { isLoading, products, fetchProducts } = useProducts()
 
-  const {
-    productCategories,
-    isLoading,
-    fetchProductCategories,
-    products,
-    fetchProducts,
-  } = useProducts()
-  const location = useLocation()
-  const { state } = location
-  const originalCategory = state?.original || 'Category Not Found'
-
+  const categoryProducts = products.filter(
+    (categoryProduct) =>
+      strToSlug(categoryProduct.category) === String(category),
+  )
+  const title = String(categoryProducts[0]?.category)
   useEffect(() => {
-    if (originalCategory) {
-      fetchProductCategories(originalCategory)
-    } else {
-      fetchProducts()
-    }
-  }, [fetchProductCategories, originalCategory, fetchProducts])
-  useEffect(() => {
-    setTitle(String(capitalizeFirstLetters(originalCategory)))
+    fetchProducts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (title) {
+      setTitle(capitalizeFirstLetters(title))
+    }
+  }, [setTitle, title])
+
   return (
     <>
       <Header />
       <main>
-        <CategoryTitleComponent
-          title={capitalizeFirstLetters(originalCategory)}
-        />
+        <CategoryTitleComponent title={capitalizeFirstLetters(title)} />
         {isLoading && <LoadingComponent />}
-        {productCategories && (
-          <ProductList products={productCategories} isLoading={isLoading} />
+        {categoryProducts && (
+          <ProductList products={categoryProducts} isLoading={isLoading} />
         )}
-        {products && <ProductList products={products} isLoading={isLoading} />}
       </main>
       <Footer />
     </>
