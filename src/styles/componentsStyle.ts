@@ -28,6 +28,7 @@ export const LinkUnstylled = styled(Link)`
 export const ButtonUninstyled = styled.button`
   border: none;
   text-decoration: none;
+  text-align: start;
   background: none;
   color: inherit;
 `

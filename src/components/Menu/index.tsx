@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 
+import { IoMdClose } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 
 import { useProducts } from 'context/ProductContext'
@@ -52,16 +53,26 @@ const Menu: React.FC<IMenuProps> = ({ activateMenu, setActivateMenu }) => {
               onClick={() => setActivateMenu(false)}
               type="button"
             >
-              x
+              <IoMdClose />
             </ButtonUninstyled>
           </div>
           <MenuMobileNav>
-            <LinkUnstylled to="/">All Products</LinkUnstylled>
+            <LinkUnstylled
+              to="/all-products"
+              onClick={() => {
+                setActivateMenu(false)
+              }}
+            >
+              All Products
+            </LinkUnstylled>
             {categories &&
               categories.map((category) => (
                 <ButtonUninstyled
                   key={category}
-                  onClick={() => handleNavigate(category)}
+                  onClick={() => {
+                    handleNavigate(category)
+                    setActivateMenu(false)
+                  }}
                 >
                   {capitalizeFirstLetters(category)}
                 </ButtonUninstyled>

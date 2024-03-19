@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row'
 
 import { useProducts } from 'context/ProductContext'
 
+import Footer from 'components/Footer'
 import Header from 'components/Header'
 import { LoadingComponent } from 'components/LoadingComponent'
 import { ProductCard } from 'components/ProductCard'
@@ -29,24 +30,26 @@ const Home: React.FC = () => {
   return (
     <>
       <Header />
-
-      {isLoading && <LoadingComponent />}
-      <Container>
-        <Row>
-          {!isLoading &&
-            products.map((product) => (
-              <Col
-                className="d-flex p-2"
-                key={product.id}
-                xs={12}
-                md={4}
-                lg={3}
-              >
-                <ProductCard product={product} />
-              </Col>
-            ))}
-        </Row>
-      </Container>
+      <main>
+        {isLoading && <LoadingComponent />}
+        <Container>
+          <Row>
+            {!isLoading &&
+              products.map((product) => (
+                <Col
+                  className="d-flex p-2"
+                  key={product.id}
+                  xs={12}
+                  md={4}
+                  lg={3}
+                >
+                  <ProductCard product={product} />
+                </Col>
+              ))}
+          </Row>
+        </Container>
+      </main>
+      <Footer />
     </>
   )
 }

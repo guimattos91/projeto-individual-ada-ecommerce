@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { useProducts } from 'context/ProductContext'
 
 import { CategoryTitleComponent } from 'components/CategoryTitleComponent'
+import Footer from 'components/Footer'
 import Header from 'components/Header'
 import { LoadingComponent } from 'components/LoadingComponent'
 import { ProductList } from 'components/ProductList'
@@ -41,14 +42,17 @@ const Category: React.FC = () => {
   return (
     <>
       <Header />
-      <CategoryTitleComponent
-        title={capitalizeFirstLetters(originalCategory)}
-      />
-      {isLoading && <LoadingComponent />}
-      {productCategories && (
-        <ProductList products={productCategories} isLoading={isLoading} />
-      )}
-      {products && <ProductList products={products} isLoading={isLoading} />}
+      <main>
+        <CategoryTitleComponent
+          title={capitalizeFirstLetters(originalCategory)}
+        />
+        {isLoading && <LoadingComponent />}
+        {productCategories && (
+          <ProductList products={productCategories} isLoading={isLoading} />
+        )}
+        {products && <ProductList products={products} isLoading={isLoading} />}
+      </main>
+      <Footer />
     </>
   )
 }

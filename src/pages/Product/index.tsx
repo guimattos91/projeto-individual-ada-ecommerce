@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 
 import { useProducts } from 'context/ProductContext'
 
+import Footer from 'components/Footer'
 import Header from 'components/Header'
 import { LoadingComponent } from 'components/LoadingComponent'
 import { ProductDetails } from 'components/ProductDetails'
@@ -32,6 +33,7 @@ const Product: React.FC = () => {
         {isLoading && <LoadingComponent />}
         {product && <ProductDetails product={product} />}
       </main>
+      <Footer />
     </>
   )
 }

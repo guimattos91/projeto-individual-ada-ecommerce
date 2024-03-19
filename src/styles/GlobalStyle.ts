@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
         --color-primary: #a77ae4;
         --color-secundary: #34ff89;
-        --color-terciary: #f0fb7f;
+        --color-terciary: #6e48a1;
         --color-danger: #e94444;
         --color-gray: #babbc2;
         --color-dark: #23252f;
@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+
 `
 
 export default GlobalStyle
