@@ -13,7 +13,7 @@ const Router: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:category" element={<Category />} />
+        <Route path="/categories/:category" element={<Category />} />
         <Route path="/all-products" element={<CategoryAllProducts />} />
         <Route path="/:category/:product/:id" element={<Product />} />
         <Route path="*" element={<NotFound />} />

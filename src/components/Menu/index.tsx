@@ -15,6 +15,7 @@ import {
   MenuBackground,
   MenuContainer,
   MenuMobile,
+  MenuMobileBackground,
   MenuMobileNav,
 } from './style'
 
@@ -27,7 +28,7 @@ const Menu: React.FC<IMenuProps> = ({ activateMenu, setActivateMenu }) => {
   const { categories } = useProducts()
   const navigate = useNavigate()
   const handleNavigate = (category: string): void => {
-    navigate(`/${strToSlug(category)}`, {
+    navigate(`/categories/${strToSlug(category)}`, {
       state: { original: `${category}` },
     })
   }
@@ -46,39 +47,45 @@ const Menu: React.FC<IMenuProps> = ({ activateMenu, setActivateMenu }) => {
           ))}
       </MenuContainer>
       {activateMenu && (
-        <MenuMobile>
-          <div className="d-flex justify-content-between mx-4">
-            <Logo />
-            <ButtonUninstyled
-              onClick={() => setActivateMenu(false)}
-              type="button"
-            >
-              <IoMdClose />
-            </ButtonUninstyled>
-          </div>
-          <MenuMobileNav>
-            <LinkUnstylled
-              to="/all-products"
-              onClick={() => {
-                setActivateMenu(false)
-              }}
-            >
-              All Products
-            </LinkUnstylled>
-            {categories &&
-              categories.map((category) => (
-                <ButtonUninstyled
-                  key={category}
-                  onClick={() => {
-                    handleNavigate(category)
-                    setActivateMenu(false)
-                  }}
-                >
-                  {capitalizeFirstLetters(category)}
-                </ButtonUninstyled>
-              ))}
-          </MenuMobileNav>
-        </MenuMobile>
+        <MenuMobileBackground
+          onClick={() => {
+            setActivateMenu(false)
+          }}
+        >
+          <MenuMobile>
+            <div className="d-flex justify-content-between mx-4">
+              <Logo />
+              <ButtonUninstyled
+                onClick={() => setActivateMenu(false)}
+                type="button"
+              >
+                <IoMdClose />
+              </ButtonUninstyled>
+            </div>
+            <MenuMobileNav>
+              <LinkUnstylled
+                to="/all-products"
+                onClick={() => {
+                  setActivateMenu(false)
+                }}
+              >
+                All Products
+              </LinkUnstylled>
+              {categories &&
+                categories.map((category) => (
+                  <ButtonUninstyled
+                    key={category}
+                    onClick={() => {
+                      handleNavigate(category)
+                      setActivateMenu(false)
+                    }}
+                  >
+                    {capitalizeFirstLetters(category)}
+                  </ButtonUninstyled>
+                ))}
+            </MenuMobileNav>
+          </MenuMobile>
+        </MenuMobileBackground>
       )}
     </MenuBackground>
   )

@@ -37,7 +37,7 @@ const ProductDetails: React.FC<IProductTypeProps> = ({ product }) => {
           <Breadcrumbs>
             <p>
               <LinkUnstylled to="/"> home&nbsp;</LinkUnstylled>
-              <LinkUnstylled to={`/${strToSlug(product.category)}`}>
+              <LinkUnstylled to={`/categories/${strToSlug(product.category)}`}>
                 &nbsp;/&nbsp;{capitalizeFirstLetters(product.category)}
               </LinkUnstylled>
               &nbsp;/&nbsp;{product.title}

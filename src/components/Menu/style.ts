@@ -26,7 +26,7 @@ export const MenuMobile = styled.div`
   left: 0;
   height: 100vh;
   width: 80%;
-  z-index: 3;
+  z-index: 4;
   background-color: var(--color-primary);
   color: var(--color-white);
   padding: 2rem 0 0 0;
@@ -34,6 +34,15 @@ export const MenuMobile = styled.div`
   @media (max-width: 768px) {
     display: block;
   }
+`
+export const MenuMobileBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 3;
+  background-color: rgba(110, 72, 161, 0.7);
 `
 
 export const MenuMobileNav = styled.nav`

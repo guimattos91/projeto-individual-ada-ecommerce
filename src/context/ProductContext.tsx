@@ -1,6 +1,4 @@
 import {
-  Dispatch,
-  SetStateAction,
   createContext,
   useCallback,
   useContext,
@@ -24,7 +22,6 @@ interface IContextProps {
   fetchProducts: () => void
   fetchCategories: () => void
   fetchProductCategories: (category: string) => void
-  setProductCategories: Dispatch<SetStateAction<ProductType[]>>
 }
 
 interface IProductProviderProps {
@@ -116,7 +113,6 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           fetchProduct,
           fetchProducts,
           fetchProductCategories,
-          setProductCategories,
           fetchCategories,
         }),
         [
@@ -129,7 +125,6 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           fetchProduct,
           fetchProducts,
           fetchProductCategories,
-          setProductCategories,
           fetchCategories,
         ],
       )}

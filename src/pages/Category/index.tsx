@@ -26,7 +26,7 @@ const Category: React.FC = () => {
   } = useProducts()
   const location = useLocation()
   const { state } = location
-  const originalCategory = state?.original || 'All Products'
+  const originalCategory = state?.original || 'Category Not Found'
 
   useEffect(() => {
     if (originalCategory) {
