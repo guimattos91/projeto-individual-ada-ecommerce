@@ -15,13 +15,11 @@ interface IContextProps {
   product: ProductType | null
   products: ProductType[]
   categories: string[]
-  productCategories: ProductType[]
   isLoading: boolean
   error: string | null
   fetchProduct: (id: number) => void
   fetchProducts: () => void
   fetchCategories: () => void
-  fetchProductCategories: (category: string) => void
 }
 
 interface IProductProviderProps {
@@ -36,7 +34,6 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
   const [product, setProduct] = useState<ProductType | null>(null)
   const [products, setProducts] = useState<ProductType[]>([])
   const [categories, setCategories] = useState<string[]>([])
-  const [productCategories, setProductCategories] = useState<ProductType[]>([])
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -82,19 +79,6 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
     }
   }, [])
 
-  const fetchProductCategories = useCallback(async (category: string) => {
-    setIsLoading(true)
-    setError(null)
-    try {
-      const { data } = await Api.get(`/category/${category}`)
-      setProductCategories(data)
-    } catch {
-      setError('Error: Category Not Found')
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
-
   useEffect(() => {
     fetchCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,12 +91,10 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           product,
           products,
           categories,
-          productCategories,
           isLoading,
           error,
           fetchProduct,
           fetchProducts,
-          fetchProductCategories,
           fetchCategories,
         }),
         [
@@ -121,10 +103,8 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           isLoading,
           error,
           categories,
-          productCategories,
           fetchProduct,
           fetchProducts,
-          fetchProductCategories,
           fetchCategories,
         ],
       )}
