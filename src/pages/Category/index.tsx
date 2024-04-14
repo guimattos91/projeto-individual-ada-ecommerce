@@ -39,10 +39,12 @@ const Category: React.FC = () => {
     <>
       <Header />
       <main>
-        <CategoryTitleComponent title={capitalizeFirstLetters(title)} />
         {isLoading && <LoadingComponent />}
-        {categoryProducts && (
-          <ProductList products={categoryProducts} isLoading={isLoading} />
+        {categoryProducts && !isLoading && (
+          <>
+            <CategoryTitleComponent title={capitalizeFirstLetters(title)} />
+            <ProductList products={categoryProducts} isLoading={isLoading} />
+          </>
         )}
       </main>
       <Footer />

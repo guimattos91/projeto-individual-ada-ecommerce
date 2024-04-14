@@ -4,6 +4,7 @@ type RatingType = {
 }
 
 export type ProductType = {
+  quantity: number
   id: number
   title: string
   price: number

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { ProductProvider } from 'context/ProductContext'
+import { ClientProvider } from 'context/UserContext'
 
 import GlobalStyle from 'styles/GlobalStyle'
 
@@ -13,8 +14,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Suspense>
       <ProductProvider>
-        <App />
-        <GlobalStyle />
+        <ClientProvider>
+          <App />
+          <GlobalStyle />
+        </ClientProvider>
       </ProductProvider>
     </Suspense>
   </React.StrictMode>,

@@ -746,8 +746,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-
-
 "@types/react-text-truncate@npm:^0.14.4":
   version: 0.14.4
   resolution: "@types/react-text-truncate@npm:0.14.4"
@@ -4668,6 +4666,15 @@ react-dom@latest:
   languageName: node
   linkType: hard
 
+"react-loading-skeleton@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "react-loading-skeleton@npm:3.4.0"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 4ac360e9fffbd9f2a733b2f05b44cd818dff15f55ae130f19e32db7f70a23795ac9d51ba9234b872a25a902514eabffeaf0baf4f251191be1e3a680cd1851231
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:^0.14.0":
   version: 0.14.0
   resolution: "react-refresh@npm:0.14.0"
@@ -5809,6 +5816,7 @@ react@latest:
     react-dom: latest
     react-i18next: ^11.18.3
     react-icons: ^5.0.1
+    react-loading-skeleton: ^3.4.0
     react-router-dom: ^6.3.0
     react-text-truncate: ^0.19.0
     react-truncate: ^2.4.0

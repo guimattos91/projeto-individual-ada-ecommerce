@@ -7,6 +7,12 @@ export const FooterStyled = styled.footer`
   background-color: var(--color-primary);
   color: white;
   padding: 2rem 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    column-gap: 2rem;
+    text-align: center;
+  }
 `
 export const Signature = styled.div`
   display: flex;

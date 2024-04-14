@@ -1,19 +1,41 @@
+import { useState } from 'react'
+
 import { Ratio, Row, Col, Container } from 'react-bootstrap'
 import { FaStar } from 'react-icons/fa'
 
 import { capitalizeFirstLetters, formatPrice, strToSlug } from 'helpers'
 
-import { Line, LinkUnstylled } from 'styles/componentsStyle'
+import { ButtonUninstyled, Line, LinkUnstylled } from 'styles/componentsStyle'
 
 import { ProductType } from 'types/ProductType'
 
-import { Breadcrumbs, DescriptionDiv, Price, Rating } from './styled'
+import {
+  Breadcrumbs,
+  DescriptionDiv,
+  Price,
+  QuantityControlDiv,
+  Rating,
+} from './styled'
 
 interface IProductTypeProps {
   product: ProductType
+  addToCart: (productQuantity: number) => void
 }
 
-const ProductDetails: React.FC<IProductTypeProps> = ({ product }) => {
+const ProductDetails: React.FC<IProductTypeProps> = ({
+  product,
+  addToCart,
+}) => {
+  const [productQuantity, setProductQuantity] = useState(0)
+  const handleAddition = (): void => {
+    setProductQuantity((prev) => prev + 1)
+  }
+  const handleSubtraction = (): void => {
+    if (productQuantity > 0) {
+      setProductQuantity((prev) => prev - 1)
+    }
+  }
+
   return (
     <Container>
       <Row>
@@ -56,6 +78,32 @@ const ProductDetails: React.FC<IProductTypeProps> = ({ product }) => {
           <Line />
 
           <Price>${formatPrice(product.price)}</Price>
+          <QuantityControlDiv className="d-flex g-3">
+            <ButtonUninstyled
+              type="button"
+              className="me-3"
+              onClick={handleSubtraction}
+            >
+              -
+            </ButtonUninstyled>
+            <p>{productQuantity}</p>
+
+            <ButtonUninstyled
+              type="button"
+              className="ms-3"
+              onClick={handleAddition}
+            >
+              +
+            </ButtonUninstyled>
+          </QuantityControlDiv>
+
+          <ButtonUninstyled
+            type="button"
+            className="ms-3"
+            onClick={() => addToCart(productQuantity)}
+          >
+            Add To Cart
+          </ButtonUninstyled>
         </Col>
       </Row>
       <DescriptionDiv>
@@ -64,7 +112,7 @@ const ProductDetails: React.FC<IProductTypeProps> = ({ product }) => {
       </DescriptionDiv>
       <Row>
         <Col>
-          <p>{product.description}</p>
+          <p className="mb-3">{product.description}</p>
         </Col>
       </Row>
     </Container>

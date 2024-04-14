@@ -9,6 +9,11 @@ export const DescriptionDiv = styled.div`
   color: var(--color-primary);
   margin-top: 2rem;
 `
+export const QuantityControlDiv = styled.div`
+  padding: 0 1rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+`
 export const Rating = styled.div`
   display: flex;
   align-items: center;

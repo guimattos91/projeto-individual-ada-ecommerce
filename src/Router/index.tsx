@@ -3,6 +3,7 @@ import { memo } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import CategoryAllProducts from 'pages/AllProducts'
+import Cart from 'pages/Cart'
 import Category from 'pages/Category'
 import Home from 'pages/Home'
 import NotFound from 'pages/NotFound'
@@ -16,6 +17,7 @@ const Router: React.FC = () => {
         <Route path="/categories/:category" element={<Category />} />
         <Route path="/all-products" element={<CategoryAllProducts />} />
         <Route path="/:category/:product/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

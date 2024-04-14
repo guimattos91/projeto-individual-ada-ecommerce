@@ -20,7 +20,7 @@ const Product: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const { product, isLoading, fetchProduct } = useProducts()
+  const { product, isLoading, fetchProduct, addToCart } = useProducts()
   useEffect(() => {
     fetchProduct(Number(id))
 
@@ -31,7 +31,7 @@ const Product: React.FC = () => {
       <Header />
       <main>
         {isLoading && <LoadingComponent />}
-        {product && <ProductDetails product={product} />}
+        {product && <ProductDetails product={product} addToCart={addToCart} />}
       </main>
       <Footer />
     </>

@@ -15,11 +15,13 @@ interface IContextProps {
   product: ProductType | null
   products: ProductType[]
   categories: string[]
+  cart: ProductType[]
   isLoading: boolean
   error: string | null
   fetchProduct: (id: number) => void
   fetchProducts: () => void
   fetchCategories: () => void
+  addToCart: (quantity: number) => void
 }
 
 interface IProductProviderProps {
@@ -36,6 +38,7 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
   const [categories, setCategories] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [cart, setCart] = useState<ProductType[]>([])
 
   const fetchProducts = useCallback(async () => {
     setIsLoading(true)
@@ -79,6 +82,36 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
     }
   }, [])
 
+  const addToCart = useCallback(
+    (quantity: number): void => {
+      if (!product) {
+        return
+      }
+
+      const existingCartItem = cart.find((item) => item.id === product.id)
+      if (existingCartItem) {
+        const updatedCart = cart.map((item) => {
+          if (item.id === product.id) {
+            return { ...item, quantity: item.quantity + quantity }
+          }
+          return item
+        })
+        setCart(updatedCart)
+      } else {
+        const newCartItem = { ...product, quantity }
+        setCart([...cart, newCartItem])
+        localStorage.setItem('cart', JSON.stringify([...cart, newCartItem]))
+      }
+    },
+    [cart, product],
+  )
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart')
+    if (savedCart) {
+      setCart(JSON.parse(savedCart))
+    }
+  }, [])
+
   useEffect(() => {
     fetchCategories()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,11 +124,13 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           product,
           products,
           categories,
+          cart,
           isLoading,
           error,
           fetchProduct,
           fetchProducts,
           fetchCategories,
+          addToCart,
         }),
         [
           product,
@@ -103,9 +138,11 @@ export const ProductProvider: React.FC<IProductProviderProps> = ({
           isLoading,
           error,
           categories,
+          cart,
           fetchProduct,
           fetchProducts,
           fetchCategories,
+          addToCart,
         ],
       )}
     >

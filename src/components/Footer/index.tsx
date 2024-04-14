@@ -26,12 +26,13 @@ const Footer: React.FC = () => {
     <div className="d-flex flex-column">
       <FooterStyled>
         <Logo />
-        <nav className="d-flex flex-column">
+        <nav className="d-flex flex-column  my-3 my-md-0">
           {categories &&
             categories.map((category) => (
               <ButtonUninstyled
                 key={category}
                 onClick={() => handleNavigate(category)}
+                className="text-center text-md-start"
               >
                 {capitalizeFirstLetters(category)}
               </ButtonUninstyled>
@@ -58,7 +59,7 @@ const Footer: React.FC = () => {
         </div>
       </FooterStyled>
       <Signature>
-        Site made by:&nbsp;
+        Made by:&nbsp;
         <LinkUnstylled
           to="https://www.facebook.com/"
           target="_blank"
