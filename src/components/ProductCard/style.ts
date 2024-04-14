@@ -23,10 +23,25 @@ export const CardBody = styled.div`
 export const Rating = styled.div`
   display: flex;
   align-items: center;
+  font-weight: 500;
   p {
     margin-left: 0.25rem;
   }
 `
+export const CardButton = styled.button`
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+  background: var(--color-primary);
+  padding: 0.25rem 1.5rem;
+  color: var(--color-white);
+  border-radius: 3rem;
+  &:hover {
+    background-color: #a77ae4;
+  }
+`
+
 export const CardTitle = styled(TextTruncate)`
   font-size: 1.5rem;
 `

@@ -13,6 +13,7 @@ import { ButtonUninstyled, LinkUnstylled } from 'styles/componentsStyle'
 
 import {
   MenuBackground,
+  MenuButton,
   MenuContainer,
   MenuMobile,
   MenuMobileBackground,
@@ -35,15 +36,18 @@ const Menu: React.FC<IMenuProps> = ({ activateMenu, setActivateMenu }) => {
   return (
     <MenuBackground>
       <MenuContainer>
-        <LinkUnstylled to="/all-products">All Products</LinkUnstylled>
+        <MenuButton type="button" onClick={() => navigate('all-products')}>
+          All Products
+        </MenuButton>
         {categories &&
           categories.map((category) => (
-            <ButtonUninstyled
+            <MenuButton
+              type="button"
               key={category}
               onClick={() => handleNavigate(category)}
             >
               {capitalizeFirstLetters(category)}
-            </ButtonUninstyled>
+            </MenuButton>
           ))}
       </MenuContainer>
       {activateMenu && (

@@ -23,6 +23,7 @@ const Header: React.FC = () => {
           className="d-block d-md-none"
           type="button"
           onClick={handleMenu}
+          aria-label="Menu Button"
         >
           <IoMenu />
         </ButtonUninstyled>

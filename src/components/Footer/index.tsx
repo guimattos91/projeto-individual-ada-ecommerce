@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               <ButtonUninstyled
                 key={category}
                 onClick={() => handleNavigate(category)}
-                className="text-center text-md-start"
+                className="text-center"
               >
                 {capitalizeFirstLetters(category)}
               </ButtonUninstyled>
@@ -43,6 +43,7 @@ const Footer: React.FC = () => {
             to="https://www.facebook.com/"
             target="_blank"
             className="me-3"
+            aria-label="Link that sends to the Facebook Website"
           >
             <IoLogoFacebook />
           </LinkUnstylled>
@@ -50,10 +51,15 @@ const Footer: React.FC = () => {
             to="https://www.instagram.com/"
             target="_blank"
             className="me-3"
+            aria-label="Link that sends to the Intagram Website"
           >
             <IoLogoInstagram />
           </LinkUnstylled>
-          <LinkUnstylled to="https://www.twitter.com/" target="_blank">
+          <LinkUnstylled
+            to="https://www.twitter.com/"
+            target="_blank"
+            aria-label="Link that sends to the Twitter Website"
+          >
             <IoLogoTwitter />
           </LinkUnstylled>
         </div>
@@ -61,9 +67,10 @@ const Footer: React.FC = () => {
       <Signature>
         Made by:&nbsp;
         <LinkUnstylled
-          to="https://www.facebook.com/"
+          to="https://www.linkedin.com/in/guimattos91/"
           target="_blank"
           className="me-3"
+          aria-label="Link that sends to the Linkedin of the creator of this Website"
         >
           Guilherme Mattos
         </LinkUnstylled>

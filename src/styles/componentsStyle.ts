@@ -10,6 +10,9 @@ export const LinkButton = styled(Link)`
   padding: 0.25rem 1.5rem;
   color: var(--color-white);
   border-radius: 3rem;
+  :hover {
+    background: #7e56b4;
+  }
 `
 export const Line = styled.div`
   height: 2px;

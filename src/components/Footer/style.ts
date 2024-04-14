@@ -8,10 +8,10 @@ export const FooterStyled = styled.footer`
   color: white;
   padding: 2rem 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
+    display: flex;
     flex-direction: column;
     column-gap: 2rem;
-    text-align: center;
   }
 `
 export const Signature = styled.div`

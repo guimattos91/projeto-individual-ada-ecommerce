@@ -55,3 +55,11 @@ export const MenuMobileNav = styled.nav`
   background-color: var(--color-primary);
   color: var(--color-white);
 `
+export const MenuButton = styled.button`
+  position: relative;
+  border: none;
+  text-decoration: none;
+  text-align: start;
+  background: none;
+  color: inherit;
+`
